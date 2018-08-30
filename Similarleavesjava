@@ -1,0 +1,56 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+
+// helper function to store leaf nodes in a arraylist
+// helper function is used in recursion to retain the old values.
+class Solution {
+    
+    public boolean leafSimilar(TreeNode root1, TreeNode root2) {
+        
+        if(root1==null && root2==null)
+            return true;
+        
+        if(root1==null || root2==null)
+            return false;
+            
+        ArrayList<Integer> mylist1 = new ArrayList<Integer>();
+        ArrayList<Integer> mylist2 = new ArrayList<Integer>();
+        leafHelper(root1,mylist1);
+        leafHelper(root2,mylist2);
+        System.out.println(mylist1);
+        System.out.println(mylist2);
+        
+        if(mylist1.size()!=mylist2.size()) {
+            return false;
+        }
+        
+        if(!mylist1.equals(mylist2)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+    public void leafHelper(TreeNode root,ArrayList<Integer> al) {
+        if(root==null)
+            return;
+        if(root.left==null && root.right==null) 
+            al.add(root.val);
+        leafHelper(root.left,al);
+        leafHelper(root.right,al);
+        
+            
+    }
+}
+        
+        
+        
+        
+       
