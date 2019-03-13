@@ -1,0 +1,32 @@
+********Fast-Fail Iterator*******
+1. This iterator works on the collection object itself.
+2. Doesn't require any extra memory
+3. Throws ConcurrentModificationException if we try to modify the collection by adding or removing any elements while trying to iterate through it.
+4. Exception occurs in Arraylist, HashMap.
+
+Example :
+
+// Example of Fail - Fast Iterator
+import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+        List<String> list = new ArrayList<>();
+        list.add("Shruthi");
+        list.add("Rockets");
+        list.add("Ravindran");
+        list.add("SS");
+        
+        Iterator<String> it = list.iterator();
+        while(it.hasNext()) {
+           System.out.println(it.next());
+           list.add("whatsapp");
+           
+        }
+    }
+}
+
+Exception in thread "main" java.util.ConcurrentModificationException
+	at java.base/java.util.ArrayList$Itr.checkForComodification(ArrayList.java:937)
+	at java.base/java.util.ArrayList$Itr.next(ArrayList.java:891)
+	at MyClass.main(MyClass.java:13)
+Command exited with non-zero status 1
